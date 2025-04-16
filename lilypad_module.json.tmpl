@@ -1,0 +1,21 @@
+{
+  "machine": { "gpu": 1, "vram": 0, "cpu": 8000, "ram": 16000 },
+  "job": {
+    "APIVersion": "V1beta1",
+    "Spec": {
+      "Deal": { "Concurrency": 1 },
+      "Docker": {
+        "Entrypoint": [
+          "/app/src/run_model", {{ .request }}
+        ],
+        "Image": "lilypadnetwork/phi4-mini-3.8b@sha256:a75b24c58732fe4bd69fbca7df4df09d62ca9fd22f52c71aac143a73ad66f9f8"
+      },
+      "Engine": "Docker",
+      "Network": { "Type": "None" },
+      "Outputs": [{ "Name": "outputs", "Path": "/outputs" }],
+      "Resources": { "GPU": "1", "CPU": "8", "Memory": "16Gb" },
+      "Timeout": 1800,
+      "Verifier": "Noop"
+    }
+  }
+}
